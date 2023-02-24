@@ -22,6 +22,11 @@ public class App implements TelegramMvcController {
     @Value("${bot.token}")
     private String botToken;
 
+    @Override
+    public String getToken() {
+        return botToken;
+    }
+
     @BotRequest(value = "/hello", type = {MessageType.CALLBACK_QUERY, MessageType.MESSAGE})
     public BaseRequest hello(User user, Chat chat) {
         return new SendMessage(chat.id(), "Hello, " + user.firstName() + "!");
@@ -45,10 +50,5 @@ public class App implements TelegramMvcController {
         CashApiRequests cashApiRequests = CashApiRequests.getInstance();
         cashApiRequests.cashing();
         SpringApplication.run(App.class);
-    }
-
-    @Override
-    public String getToken() {
-        return botToken;
     }
 }

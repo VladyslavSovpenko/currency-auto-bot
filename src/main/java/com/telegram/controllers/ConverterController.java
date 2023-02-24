@@ -78,7 +78,8 @@ public class ConverterController implements TelegramMvcController {
         CurrencyEnum targetCurrency = profiles.getProfileSettings(chat.id().toString()).getTargetCurrency();
         double ratio = getConverse(originalCurrency, targetCurrency, chat.id().toString());
 
-        return new SendMessage(chat.id(), String.format("%4.2f %s is %4.2f %s", parseDouble.get(), originalCurrency, (parseDouble.get() * ratio), targetCurrency));
+        return new SendMessage(chat.id(), String.format("%4.2f %s is %4.2f %s", parseDouble.get(), originalCurrency, (parseDouble.get() * ratio),
+                targetCurrency));
     }
 
     private double getConverse(CurrencyEnum from, CurrencyEnum to, String chatUserID) {
